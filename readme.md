@@ -9,7 +9,7 @@ Git : You must have git for cloning the project.
 ### How To Run The Project
 
 1. Clone the project.
-2. cd into the root directory by running `cd deriv-com-workspace`.
+2. cd into the root directory by running `cd decouple-academy`.
 3. execute the following command to run the containers.
 
 `docker compose up`
