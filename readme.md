@@ -14,6 +14,12 @@ Git : You must have git for cloning the project.
 
 `docker compose up`
 
+Now Please open
+
+1. http://localhost it will serve the deriv-com project
+2. http://localhost/blog it will serve the wordpress content
+3. http://localhost/admin/ or http://localhost/blog/wp-admin/ it will open wordpress login
+
 ### Note:
 
 you have to get two files .env.production and .env.developments from deriv-com TLs to be able to run the project.
