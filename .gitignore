@@ -1,0 +1,3 @@
+data/*
+website/public/*
+website/.env*

@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  wp_db:   
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    container_name: deriv_workspace_db
+    image: mariadb:10.6.4-focal
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - ./data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+    expose:
+      - 3306
+      - 33060
+
+      
+  deriv_blog:
+    container_name: deriv_workspace_blog
+    depends_on:
+      - proxy
+    image: wordpress:latest
+    ports:
+      - 5000:80
+    restart: always
+    volumes:
+      - ./blog:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: wp_db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress      
+      
+  deriv_website:
+    container_name: deriv_workspace_website
+    depends_on:
+      - proxy
+    # docker will try to download the image from docker hub and if it's not there it will build the context 
+    # image: deriv-com/website
+    build: ./website
+    restart: always
+    ports:
+    - "9000:80"
+
+
+  proxy:
+    container_name: deriv_workspace_proxy
+    build: ./proxy
+    restart: always
+    ports:
+    - "80:80"
+

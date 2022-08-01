@@ -1,0 +1,16 @@
+{
+    "include": ["./src/**/*", "./src/custom.d.ts"],
+    "jsx": "react",
+    "compilerOptions": {
+        "baseUrl": "src",
+        "jsx": "preserve",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "downlevelIteration": true
+    },
+}
